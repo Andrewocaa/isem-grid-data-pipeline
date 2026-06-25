@@ -1,5 +1,6 @@
 import sqlite3
 import pandas as pd
+import numpy as np
 import requests
 from entsoe import EntsoePandasClient
 
@@ -92,6 +93,11 @@ def run_pipeline():
 
         # Join the grid dataframe and the weather dataframe on their matching UTC indices
         master_df = irish_grid_df.join(weather_df, how='left')
+
+        # FACTUAL TRANSMISSION CAPACITY ENGINEERING
+        master_df['transmission_capacity_snsp'] = master_df['demand_mw'] * 0.75
+        total_non_sync = master_df['actual_wind_mw'].fillna(0) + master_df['actual_solar_mw'].fillna(0) + master_df['net_gb_flow_mw'].clip(lower=0).fillna(0)
+        master_df['transmission_capacity_utilization_pct'] = np.where(master_df['demand_mw'] > 500.0,(total_non_sync / master_df['transmission_capacity_snsp']) * 100, np.nan)
 
         # Format DataFrame Index for SQLite Storage (Strings work best for timestamps in SQLite)
         master_df.index = master_df.index.strftime('%Y-%m-%d %H:%M:%S')

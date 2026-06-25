@@ -16,7 +16,9 @@ def initialize_database():
             wind_speed_100m REAL,
             temperature_2m REAL,
             net_gb_flow_mw REAL,
-            net_demand_mw REAL
+            net_demand_mw REAL,
+            transmission_capacity_snsp REAL,
+            transmission_capacity_utilization_pct REAL
         )
     ''')
     
