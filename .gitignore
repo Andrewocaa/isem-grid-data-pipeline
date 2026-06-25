@@ -1,0 +1,12 @@
+# Ignore local database vaults
+*.db
+*.sqlite3
+
+# Ignore API secret keys and configuration environment files
+.env
+secret_keys.txt
+
+# Ignore Python system cache files
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
