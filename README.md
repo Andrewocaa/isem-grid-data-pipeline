@@ -12,7 +12,8 @@ The pipeline decouples data ingestion from analysis to ensure system stability a
 
 1. **Ingestion Engine (`fetch_data.py`)**: Executes daily incremental polls utilizing a rolling 3-day window to capture late-settling server updates. It connects to the ENTSO-E and Open-Meteo API servers.
 2. **Storage Vault (`irish_grid.db`)**: A lightweight relational database operating a strict `PRIMARY KEY` constraint on hourly timestamps to prevent duplicate records and enforce data integrity via upsert procedures.
-3. **Analytics Workbench (`analysis.ipynb`)**: An entirely offline environment that pulls directly from the local database for rapid query processing, statistical reporting, and visual distribution.
+3. **Analytics Workbench (`Analytics.ipynb`)**: An entirely offline environment that pulls directly from the local database for rapid query processing, statistical reporting, and visual distribution.
+4. **Database Reset Utility (`clear_db.py`)**: Deletes and recreates the local SQLite store for clean pipeline reruns during development.
 
 ---
 

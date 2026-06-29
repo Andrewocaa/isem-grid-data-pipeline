@@ -10,15 +10,20 @@ def initialize_database():
         CREATE TABLE IF NOT EXISTS market_actuals (
             timestamp TEXT PRIMARY KEY,
             price_eur_mwh REAL,
-            demand_mw REAL,
+            total_supply_mw REAL,
             actual_wind_mw REAL,
             actual_solar_mw REAL,
             wind_speed_100m REAL,
             temperature_2m REAL,
             net_gb_flow_mw REAL,
-            net_demand_mw REAL,
             transmission_capacity_snsp REAL,
-            transmission_capacity_utilization_pct REAL
+            transmission_capacity_utilization_pct REAL,
+            gen_gas_mw REAL, 
+            gen_coal_mw REAL, 
+            gen_oil_mw REAL, 
+            gen_hydro_mw REAL, 
+            gen_peat_mw REAL, 
+            gen_biowaste_mw REAL
         )
     ''')
     
